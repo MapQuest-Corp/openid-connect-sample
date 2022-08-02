@@ -47,22 +47,26 @@ export const msalConfig = {
         }
         switch (level) {
           case LogLevel.Error:
+            // eslint-disable no-console
             console.error(message);
 
             return;
           case LogLevel.Info:
+            // eslint-disable no-console
             console.info(message);
 
             return;
           case LogLevel.Verbose:
+            // eslint-disable no-console
             console.debug(message);
-
             return;
           case LogLevel.Warning:
+            // eslint-disable no-console
             console.warn(message);
 
             return;
           default:
+            // eslint-disable no-console
             console.log(message);
         }
       },
