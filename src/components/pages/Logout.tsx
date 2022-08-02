@@ -9,6 +9,7 @@ const Logout: FC = () => {
     path.substring(0, path.lastIndexOf("/"));
 
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.log(getBasename(window.location.href));
     void instance.logoutRedirect({
       account: instance.getActiveAccount(),
