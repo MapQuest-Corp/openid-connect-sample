@@ -49,12 +49,10 @@ export const msalConfig = {
           case LogLevel.Error:
             // eslint-disable no-console
             console.error(message);
-
             return;
           case LogLevel.Info:
             // eslint-disable no-console
             console.info(message);
-
             return;
           case LogLevel.Verbose:
             // eslint-disable no-console
@@ -63,7 +61,6 @@ export const msalConfig = {
           case LogLevel.Warning:
             // eslint-disable no-console
             console.warn(message);
-
             return;
           default:
             // eslint-disable no-console
