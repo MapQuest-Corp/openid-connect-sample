@@ -21,7 +21,6 @@ import {
   UnauthenticatedTemplate,
   useMsal,
 } from "@azure/msal-react";
-import { b2cPolicies } from "authConfig";
 
 import { Page } from "data/pageList";
 import { makeStyles } from "@mui/styles";
@@ -42,7 +41,7 @@ const useStyles = makeStyles({
 const Header: FC<PageProps> = ({ pages }) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { instance, accounts } = useMsal();
+  const { accounts } = useMsal();
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -68,12 +67,8 @@ const Header: FC<PageProps> = ({ pages }) => {
   };
 
   const handleClickEditProfile = () => {
-    // void instance.loginRedirect(b2cPolicies.authorities.editProfile);
-    void instance.loginRedirect({
-      scopes: [],
-      ...b2cPolicies.authorities.editProfile,
-    });
     setAnchorElUser(null);
+    navigate("/EditProfile");
   };
 
   const handleClickLogout = () => {
@@ -83,7 +78,7 @@ const Header: FC<PageProps> = ({ pages }) => {
 
   const handleClickLogin = () => {
     setAnchorElUser(null);
-    navigate("/login");
+    navigate("/Login");
   };
 
   const settings = [
