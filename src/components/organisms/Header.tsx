@@ -21,7 +21,6 @@ import {
   UnauthenticatedTemplate,
   useMsal,
 } from "@azure/msal-react";
-// import { b2cPolicies } from "authConfig";
 
 import { Page } from "data/pageList";
 import { makeStyles } from "@mui/styles";
