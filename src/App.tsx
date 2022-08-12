@@ -17,6 +17,7 @@ import Map from "containers/pages/Map";
 import { pageList } from "data/pageList";
 import AuthenticatedRoute from "AuthenticatedRoute";
 import UnauthenticatedRoute from "UnauthenticatedRoute";
+import EditProfile from "components/pages/EditProfile";
 
 const App: FC = () => (
   <div id="wrapper">
@@ -40,6 +41,7 @@ const App: FC = () => (
           }
         />
         <Route path="/Logout" element={<Logout />} />
+        <Route path="/EditProfile" element={<EditProfile />} />
         <Route
           path="/AccountInfo"
           element={

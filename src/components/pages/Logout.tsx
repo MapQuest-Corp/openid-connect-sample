@@ -18,7 +18,7 @@ const Logout: FC = () => {
     });
   }, [instance]);
 
-  return <h5>Logoutしています...</h5>;
+  return <h5>Logoutします...</h5>;
 };
 
 export default Logout;

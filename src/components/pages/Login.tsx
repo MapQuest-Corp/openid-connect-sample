@@ -17,7 +17,7 @@ const Login: FC = () => {
       <Helmet>
         <title>Login | MapQuest</title>
       </Helmet>
-      <h5>ログインします...</h5>
+      <h5>Loginします...</h5>
     </>
   );
 };
