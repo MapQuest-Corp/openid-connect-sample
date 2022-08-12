@@ -9,6 +9,7 @@ import Home from "components/pages/Home";
 import Training from "components/pages/Training";
 import Login from "components/pages/Login";
 import Logout from "components/pages/Logout";
+import EditProfile from "components/pages/EditProfile";
 import AccountInfo from "components/pages/AccountInfo";
 import About from "components/pages/About";
 import ServiceList from "components/pages/ServiceList";
@@ -17,7 +18,6 @@ import Map from "containers/pages/Map";
 import { pageList } from "data/pageList";
 import AuthenticatedRoute from "AuthenticatedRoute";
 import UnauthenticatedRoute from "UnauthenticatedRoute";
-import EditProfile from "components/pages/EditProfile";
 
 const App: FC = () => (
   <div id="wrapper">
@@ -40,7 +40,14 @@ const App: FC = () => (
             </UnauthenticatedRoute>
           }
         />
-        <Route path="/Logout" element={<Logout />} />
+        <Route
+          path="/Logout"
+          element={
+            <AuthenticatedRoute>
+              <Logout />
+            </AuthenticatedRoute>
+          }
+        />
         <Route path="/EditProfile" element={<EditProfile />} />
         <Route
           path="/AccountInfo"
