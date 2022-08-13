@@ -20,6 +20,8 @@ jobs:
           submodules: true
       - name: Use Node.js
         uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
       - uses: actions/cache@v3
         id: node_modules_cache_id
         env:
