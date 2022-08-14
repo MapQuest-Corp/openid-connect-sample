@@ -1,3 +1,7 @@
+# 検証実行用の差分記述
+キャッシュ確認差分記述
+
+
 # sample-react-app
 by Ryo Saito \
 Create React Appで作成したプロジェクトのため、以下の手順で実行等が可能
