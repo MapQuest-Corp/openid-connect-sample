@@ -1,10 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { b2cPolicies } from "authConfig";
 import { useMsal } from "@azure/msal-react";
+import { useDispatch } from "react-redux";
+import { changeToEditing } from "modules/profileModule";
 
 const EditProfile: FC = () => {
   const { instance } = useMsal();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(changeToEditing());
+  });
 
   const getBasename = (path: string): string =>
     path.substring(0, path.lastIndexOf("/"));

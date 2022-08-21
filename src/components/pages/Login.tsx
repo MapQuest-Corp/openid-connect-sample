@@ -1,16 +1,18 @@
 import React, { FC } from "react";
 import { Helmet } from "react-helmet";
-import { loginRequest } from "authConfig";
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
-import { InteractionStatus } from "@azure/msal-browser";
+import { useMsal } from "@azure/msal-react";
 
 const Login: FC = () => {
-  const isAuthenticated = useIsAuthenticated();
-  const { instance, inProgress } = useMsal();
+  const { instance } = useMsal();
 
-  if (inProgress === InteractionStatus.None && !isAuthenticated) {
-    void instance.loginRedirect(loginRequest);
-  }
+  const getBasename = (path: string): string =>
+    path.substring(0, path.lastIndexOf("/"));
+
+  void instance.loginRedirect({
+    scopes: ["openid"],
+    redirectUri: getBasename(window.location.href),
+    redirectStartPage: getBasename(window.location.href),
+  });
 
   return (
     <>
