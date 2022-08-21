@@ -19,12 +19,13 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   AuthenticatedTemplate,
   UnauthenticatedTemplate,
-  useMsal,
 } from "@azure/msal-react";
 
 import { Page } from "data/pageList";
 import { makeStyles } from "@mui/styles";
 import LoginButton from "components/molecules/LoginButton";
+import { RootState } from "rootReducer";
+import { useSelector } from "react-redux";
 
 type PageProps = {
   pages: Page[];
@@ -39,9 +40,9 @@ const useStyles = makeStyles({
 });
 
 const Header: FC<PageProps> = ({ pages }) => {
+  const { currentName } = useSelector((state: RootState) => state.profile);
   const classes = useStyles();
   const navigate = useNavigate();
-  const { accounts } = useMsal();
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -226,7 +227,7 @@ const Header: FC<PageProps> = ({ pages }) => {
           <Box sx={{ flexGrow: 0 }}>
             <AuthenticatedTemplate>
               <Typography variant="h6" sx={{ display: "inline-block" }}>
-                {accounts[0]?.idTokenClaims?.name}
+                {currentName}
               </Typography>
               <Tooltip title="Open settings">
                 <IconButton

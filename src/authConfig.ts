@@ -81,5 +81,4 @@ export const loginRequest = {
 
 export const silentRequest = {
   scopes: ["openid", "profile"],
-  loginHint: "example@domain.net",
 };

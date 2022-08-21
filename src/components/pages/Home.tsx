@@ -1,8 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import AllServices from "components/templates/AllServices";
 import { makeStyles } from "@mui/styles";
 import { Box, Divider, Grid, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { changeCurrentInfo } from "modules/profileModule";
+import { msalInstance } from "index";
+import { RootState } from "rootReducer";
+import { TokenPayload } from "types/TokenPayload";
 
 const useStyles = makeStyles({
   introText: {
@@ -10,8 +15,52 @@ const useStyles = makeStyles({
   },
 });
 
+// Get the latest profile information
+const getCurrentInfo = (): TokenPayload => {
+  const accounts = msalInstance.getAllAccounts();
+  // When the profile is edited
+  if (accounts.length > 1) {
+    const editedAccount = accounts.filter((account) => {
+      return account?.idTokenClaims?.tfp === "B2C_1_profileediting";
+    });
+
+    return {
+      currentName: editedAccount[0]?.idTokenClaims?.name as string,
+      currentIat: editedAccount[0]?.idTokenClaims?.iat as number,
+    };
+  }
+
+  return {
+    currentName: accounts[0]?.idTokenClaims?.name as string,
+    currentIat: accounts[0]?.idTokenClaims?.iat as number,
+  };
+};
+
 const Home: FC = () => {
+  const { isEditing, currentIat } = useSelector(
+    (state: RootState) => state.profile
+  );
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Redirect after editing profile
+    if (isEditing) {
+      // To wait for profile updates to be reflected
+      const updateProfileState = setInterval(() => {
+        if (
+          msalInstance.getAllAccounts().length > 1 &&
+          currentIat !== getCurrentInfo().currentIat
+        ) {
+          dispatch(changeCurrentInfo(getCurrentInfo()));
+          clearInterval(updateProfileState);
+        }
+      }, 100);
+    } else {
+      dispatch(changeCurrentInfo(getCurrentInfo()));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isEditing]);
 
   return (
     <>
