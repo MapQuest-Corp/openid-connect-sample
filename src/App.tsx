@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React, { FC } from "react";
 import { Navigate, Routes, Route } from "react-router";
 
@@ -48,7 +49,14 @@ const App: FC = () => (
             </AuthenticatedRoute>
           }
         />
-        <Route path="/EditProfile" element={<EditProfile />} />
+        <Route
+          path="/EditProfile"
+          element={
+            <AuthenticatedRoute>
+              <EditProfile />
+            </AuthenticatedRoute>
+          }
+        />
         <Route
           path="/AccountInfo"
           element={
