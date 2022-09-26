@@ -26,7 +26,7 @@ export const b2cPolicies = {
 
 export const msalConfig = {
   auth: {
-    clientId: "af9bca26-389b-4196-93b8-dc55080188e5",
+    clientId: "bfca7d80-3491-485c-9b36-f5011edc585b",
     authority: b2cPolicies.authorities.signUpSignIn.authority,
     knownAuthorities: [b2cPolicies.authorityDomain],
     navigateToLoginRequestUrl: true,
