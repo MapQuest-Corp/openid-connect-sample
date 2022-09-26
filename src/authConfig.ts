@@ -3,22 +3,22 @@ import { LogLevel } from "@azure/msal-browser";
 
 export const b2cPolicies = {
   names: {
-    signUpSignIn: "B2C_1_signupsignin",
-    forgotPassword: "B2C_1_reset_password",
-    editProfile: "B2C_1_profileediting",
+    signUpSignIn: "B2C_1_signin_signup_openid",
+    forgotPassword: "B2C_1_resetpw_openid",
+    editProfile: "B2C_1_profile_edit_openid",
   },
   authorities: {
     signUpSignIn: {
       authority:
-        "https://mapquestcorp.b2clogin.com/mapquestcorp.onmicrosoft.com/B2C_1_signupsignin",
+        "https://mapquestcorp.b2clogin.com/mapquestcorp.onmicrosoft.com/B2C_1_signin_signup_openid",
     },
     forgotPassword: {
       authority:
-        "https://mapquestcorp.b2clogin.com/mapquestcorp.onmicrosoft.com/B2C_1_reset_password",
+        "https://mapquestcorp.b2clogin.com/mapquestcorp.onmicrosoft.com/B2C_1_resetpw_openid",
     },
     editProfile: {
       authority:
-        "https://mapquestcorp.b2clogin.com/mapquestcorp.onmicrosoft.com/B2C_1_profileediting",
+        "https://mapquestcorp.b2clogin.com/mapquestcorp.onmicrosoft.com/B2C_1_profile_edit_openid",
     },
   },
   authorityDomain: "mapquestcorp.b2clogin.com",
